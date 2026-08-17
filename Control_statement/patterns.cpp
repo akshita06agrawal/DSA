@@ -350,3 +350,53 @@ int main(){
     
     return 0;
 }
+
+//square of numbers
+// 11111
+// 22222
+// 33333
+// 44444
+// 55555
+#include<iostream>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    for(int i=1;i<=n;i++){
+          for(int j=1;j<=n;j++){  
+                cout<<i;
+          }
+          cout<<endl;
+     }
+
+    return 0;
+}
+
+
+// Pascal's triangle
+//     1
+//    1 1
+//   1 2 1
+//  1 3 3 1        
+// 1 4 6 4 1
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+   for(int i=0;i<n;i++){
+       int value=1;
+       for(int j=0;j<n-i;j++){
+           cout<<" ";
+       }
+       for(int j=0;j<=i;j++){
+           cout<<value<<" ";
+           value=value*(i-j)/(j+1);
+           
+       }
+       cout<<endl;
+   }
+
+    return 0;
+}
