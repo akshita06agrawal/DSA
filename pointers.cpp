@@ -65,5 +65,43 @@ int main(){
 }
 
 
+// swap two numbers without third variable using pointer
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a;
+    cin>>a;
+    int b;
+    cin>>b;
+    int *ptr1=&a;
+    int *ptr2=&b;
+    a=*ptr1+*ptr2;
+    b=*ptr1-*ptr2;
+    a=*ptr1-*ptr2;
+    cout<<a<<" ";
+    cout<<b;
+
+    return 0;
+}
+
+// swap two numbers using third variable using pointer
+#include <iostream>
+using namespace std;
+int main(){
+    int a;
+    cin>>a;
+    int b;
+    cin>>b;
+    int *ptr1=&a;
+    int *ptr2=&b;
+    int temp=*ptr1;
+    *ptr1=*ptr2;
+    *ptr2=temp;
+    cout<<*ptr1<<" ";
+    cout<<*ptr2;
+
+    return 0;
+}
 
 
