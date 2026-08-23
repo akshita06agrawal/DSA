@@ -248,3 +248,49 @@ int main()
     cout<<sub;
     return 0;
 }
+
+
+// 1.  Basic Pointer to Pointer :
+ 
+// Declare an integer variable x, a pointer ptr1 pointing to x, and a pointer ptr2 pointing to ptr1. Modify the value of x using ptr2 and print the result
+#include <iostream>
+using namespace std;
+int main()
+{
+    int x;
+    cout<<"enter value:";
+    cin>>x;
+    int *ptr1=&x;
+    int **ptr2=&ptr1;
+    int y;
+    cout<<"Enter modify value:";
+    cin>>y;
+    cout<<"Old value of x:"<<**ptr2<<endl;
+    **ptr2=y;
+    cout<<"Modified value of x:"<<x;
+    return 0;
+}
+
+
+// 2. Pointer to Pointer to Pointer :
+// Declare an integer variable a, a pointer ptr1 pointing to a, a pointer-to-pointer ptr2 pointing to ptr1, and a pointer-to-pointer-to-pointer ptr3 pointing to ptr2. Use ptr3 to modify the value of a and print the value of a.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a;
+    cout<<"enter value:";
+    cin>>a;
+    int *ptr1=&a;
+    int **ptr2=&ptr1;
+    int ***ptr3=&ptr2;
+    int y;
+    cout<<"Enter modify value:";
+    cin>>y;
+    cout<<"Old value of a:"<<***ptr3<<endl;
+    ***ptr3=y;
+    cout<<"Modified value of a:"<<a;
+    return 0;
+}
+
+
