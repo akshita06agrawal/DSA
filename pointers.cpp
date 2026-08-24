@@ -294,3 +294,232 @@ int main()
 }
 
 
+
+// 3. What is new and delete operator? Explain with Example.
+//Definition: The new operator is used to allocate memory dynamically.
+// The delete operator is used to free the dynamically allocated memory.
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int *ptr = new int;
+
+    *ptr = 10;
+
+    cout << "Value: " << *ptr << endl;
+
+    delete ptr;
+
+    return 0;
+}
+
+
+//4. Memory Leak, NULL and nullptr with Example.
+//Definition:
+//1. Memory Leak: A memory leak occurs when dynamically allocated memory is not released using delete.
+//Example:
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int *ptr = new int;
+
+    *ptr = 10;
+
+    cout << *ptr << endl;
+
+    // delete ptr;  // If we don't use delete, memory leak occurs
+
+    return 0;
+}
+
+
+//2.NULL: NULL is traditionally used to indicate that a pointer does not point to a valid object.
+//Example:
+int *ptr = NULL;
+
+if (ptr == NULL)
+{
+    cout << "Pointer is NULL";
+}
+
+// 3. nullptr: nullptr was introduced in C++11 and represents a null pointer.
+// Example:
+#include <iostream>
+using namespace std;
+int main()
+{
+    int *ptr = nullptr;
+
+    if (ptr == nullptr)
+    {
+        cout << "Pointer is null";
+    }
+
+    return 0;
+}
+
+
+// 5. Pass by Value :
+// Definition: In pass by value, a copy of the argument's value is passed to the function. Any changes made to the parameter inside the function do not affect the original variable.
+// Explain With Example.
+#include <iostream>
+using namespace std;
+void changeValue(int x)
+{
+    x = 20;
+    cout << "Value inside function: " << x << endl;
+}
+int main()
+{
+    int a = 10;
+
+    cout << "Before function call: " << a << endl;
+
+    changeValue(a);
+
+    cout << "After function call: " << a << endl;
+    return 0;
+}
+
+// Output
+// Before function call: 10
+// Value inside function: 20
+// After function call: 10
+
+
+
+
+// 6. Pass by Reference :
+// Definition: In pass by reference, a reference to the original variable is passed to the function. Any changes made to the parameter inside the function will directly affect the original variable.
+// Explain With Example.
+Example
+#include <iostream>
+using namespace std;
+void changeValue(int &x)
+{
+    x = 20;
+    cout << "Value inside function: " << x << endl;
+}
+int main()
+{
+    int a = 10;
+
+    cout << "Before function call: " << a << endl;
+
+    changeValue(a);
+
+    cout << "After function call: " << a << endl;
+
+    return 0;
+}
+// Output
+// Before function call: 10
+// Value inside function: 20
+// After function call: 20
+
+
+
+
+// 7. Pass by Address (Using Pointer) : 
+// Definition: In pass by address, the address (or pointer) of the variable is passed to the function. The function can use this pointer to modify the original value of the variable. This approach allows functions to modify the original variable even though the function parameter is not a reference.
+// Explain With Example.
+Example
+#include <iostream>
+using namespace std;
+void changeValue(int *x)
+{
+    *x = 20;
+    cout << "Value inside function: " << *x << endl;
+}
+int main()
+{
+    int a = 10;
+
+    cout << "Before function call: " << a << endl;
+
+    changeValue(&a);
+
+    cout << "After function call: " << a << endl;
+
+    return 0;
+}
+// Output
+// Before function call: 10
+// Value inside function: 20
+// After function call: 20
+
+
+
+
+// 10. Compare Pass by Value, Reference, and Address :
+// Task: Compare the behavior of pass by value, reference, and address with a simple modification of an integer. Show how each method changes or doesn’t change the original value.
+// Input: int a = 5, b = 10;
+// Output: "Pass by Value: a = 5, b = 10", "Pass by Reference: a = 15, b = 10", "Pass by Address: a = 25, b = 10"
+#include <iostream>
+using namespace std;
+// Pass by Value
+void passByValue(int a)
+{
+    a = 15;
+}
+// Pass by Reference
+void passByReference(int &a)
+{
+    a = 15;
+}
+// Pass by Address
+void passByAddress(int *a)
+{
+    *a = 25;
+}
+int main()
+{
+    int a = 5;
+    int b = 10;
+
+    // Pass by Value
+    passByValue(a);
+    cout << "Pass by Value: a = " << a << ", b = " << b << endl;
+
+    // Pass by Reference
+    passByReference(a);
+    cout << "Pass by Reference: a = " << a << ", b = " << b << endl;
+
+    // Pass by Address
+    passByAddress(&a);
+    cout << "Pass by Address: a = " << a << ", b = " << b << endl;
+
+    return 0;
+}
+```
+
+// Output
+// Pass by Value: a = 5, b = 10
+// Pass by Reference: a = 15, b = 10
+// Pass by Address: a = 25, b = 10
+
+// ### Why?
+
+// **1. Pass by Value**
+// void passByValue(int a)
+// A copy of `a` is passed → original `a` remains **5**.
+
+
+// **2. Pass by Reference**
+// void passByReference(int &a)
+// The function works directly with original `a` → `a` becomes **15**.
+
+
+// **3. Pass by Address**
+// void passByAddress(int *a)
+// Address of `a` is passed → `*a = 25` changes the original `a` to **25**.
+
+
+// Value     → Copy       → Original unchanged
+// Reference → Same       → Original changed
+// Address   → Pointer    → Original changed
+
+
