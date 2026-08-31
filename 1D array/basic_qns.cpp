@@ -123,3 +123,58 @@ int main()
 
     return 0;
 }
+
+
+
+// 6. Count occurrences of a specific element : 
+// Explanation: Count how many times a specific number (key) appears in the array. Useful for learning conditional statements and counters.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cout<<"Enter size of array:";
+    cin>>n;
+    int arr[n];
+    cout<<"Enter elements of array:";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    int key;
+    cout<<"Enter key:";
+    cin>>key;
+    int count=0;
+    for(int i=0;i<n;i++){
+        if(arr[i]==key){
+            count++;
+        }
+    }
+    cout<<"No.of times key appears:"<<count;
+
+    return 0;
+}
+
+
+// 8. Find the average of all elements in an array :
+// Explanation: Calculate the average by dividing the sum of elements by the number of elements.
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cout<<"Enter size of array:";
+    cin>>n;
+    int arr[n];
+    cout<<"Enter elements of array:";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    float sum=0;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+    }
+    float avg=sum/n;
+    cout<<"Average of all elements:"<<avg;
+
+    return 0;
+}
