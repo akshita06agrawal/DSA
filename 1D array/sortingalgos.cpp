@@ -85,7 +85,10 @@ int main()
             if(arr[j]<arr[min]){
                 min=j;
             }
-            swap(arr[i],arr[min]);
+            //swap
+            int temp=arr[i];
+            arr[i]=arr[min];
+            arr[min]=temp;
         }
         
     }
