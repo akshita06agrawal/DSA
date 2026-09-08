@@ -32,33 +32,30 @@ int main(){
 
 
 
-// maximum subarray sum eqauals k
-#include<iostream>
+// maximum subarray sum whose window size equals to k
+#include<bits/stdc++.h>
 using namespace std;
-class Solution{
-    public:
-    int maxSubArrayLen(vector<int>& nums, int k) {
-        int n=nums.size();
-        int sum=0;
-        int max_len=0;
-        for(int i=0;i<n;i++){
-            
-        }
+ 
+int maxSumSubarray(vector<int> &arr, int k){
+    int windowSum = 0;
+ 
+    for(int i=0; i<k; i++){
+        windowSum += arr[i];
     }
-};
+ 
+    int maxSum =  windowSum;
+ 
+    for(int i=k; i<arr.size(); i++){
+        windowSum += arr[i];
+        windowSum -= arr[i-k];
+        maxSum = max(maxSum, windowSum);
+    }
+    return maxSum;
+}
+ 
 int main(){
-    vector<int>nums;
-    int n,k;
-    cout<<"Enter size of array:";
-    cin>>n;
-    cout<<"Enter elements of array:";
-    for(int i=0;i<n;i++){
-        int x;
-        cin>>x;
-        nums.push_back(x);
-    }
-    cout<<"Enter value of k:";
-    cin>>k;
-    cout<<"Maximum subarray sum equal to k is: ";
-    cout<<maxSubArrayLen(nums,k)<<endl;
+     vector<int> arr = {2, 1, 5, 1, 3, 2};
+ 
+    cout<<maxSumSubarray(arr, 3);
+    return 0;
 }
