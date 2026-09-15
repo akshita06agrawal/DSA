@@ -99,3 +99,49 @@ int main()
 
     return 0;
 }
+
+
+//Quick sort
+#include<bits/stdc++.h>
+using namespace std;
+int partition(int arr[],int low,int high){
+    int pivot=arr[high];
+    int i=low-1;
+    for(int j=low;j<high;j++){
+        if(arr[j]<=pivot){
+            i++;
+            swap(arr[i],arr[j]);
+        }
+    }
+    swap(arr[i+1],arr[high]);
+    return i+1;
+}
+void Quick_sort(int arr[], int low, int high){
+    if(low<high){
+    int pi=partition(arr,low,high);
+    Quick_sort(arr,low,pi-1);
+    Quick_sort(arr,pi+1,high);   
+    }
+}
+int main(){
+    int n;
+    cout<<"Enter Size of Array:";
+    cin>>n;
+    int arr[n];
+    cout<<"Enter elements of array:";
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<"Before sorting:";
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+    Quick_sort(arr,0,n-1);
+    cout<<"After sorting:";
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    
+    return 0;
+}
