@@ -301,3 +301,40 @@ public:
         return false;
     }
 };
+
+
+
+//747. Largest Number at least twice of others
+class Solution {
+public:
+    int dominantIndex(vector<int>& nums) {
+        int maxi=nums[0];
+        int maxi_index=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]>maxi){
+                maxi=nums[i];
+                maxi_index=i;
+            }  
+        }
+        for(int i=0;i<nums.size();i++){
+            if(2*nums[i]>maxi && nums[i]!=maxi){
+                return -1; 
+            }
+        }
+        return maxi_index;
+    }
+};
+
+
+
+// 88. Merge sorted array
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        for (int j = 0, i = m; j<n; j++){
+            nums1[i] = nums2[j];
+            i++;
+        }
+        sort(nums1.begin(),nums1.end());
+    }
+};
