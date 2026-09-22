@@ -404,3 +404,77 @@ public:
         return false;
     }
 };
+
+
+
+// 20. Valid parentheses
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> st;
+        for (char ch : s) {
+            if (ch == '(' || ch == '[' || ch == '{') {
+                st.push(ch);
+            } else {
+                if (st.empty()) {
+                    return false;
+                }
+                char top = st.top();
+                st.pop();
+                if (ch == ')' && top != '(') return false;
+                if (ch == ']' && top != '[') return false;
+                if (ch == '}' && top != '{') return false;
+            }
+        }
+        return st.empty();
+    }
+};
+
+
+
+
+
+// 74. Search a 2D Matrix
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int m=matrix.size();
+        int n=matrix[0].size();
+        int left=0;
+        int right=m*n-1;
+        while(left<=right){
+            int mid=left+(right-left)/2;
+            int row=mid/n;
+            int col=mid%n;
+            if(matrix[row][col]==target){
+                return true;
+            }
+            else if(matrix[row][col]<target){
+                left=mid+1;
+            }
+            else{
+                right=mid-1;
+            }
+
+            }
+            return false;
+        }
+};
+
+
+
+
+// 832. Flipping an image
+class Solution {
+public:
+    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& image) {
+        for(auto &row:image){
+            reverse(row.begin(),row.end());
+
+            for(auto &x:row){
+                x=1-x;
+            }
+        }
+        return image;
+    }
+};
