@@ -478,3 +478,41 @@ public:
         return image;
     }
 };
+
+
+
+// 1672. Richest Customer Wealth
+class Solution {
+public:
+    int maximumWealth(vector<vector<int>>& accounts) {
+        int maxi=0;
+        for(auto &row:accounts){
+            int sum=0;
+            for(auto &x:row){
+                sum+=x;
+            }
+            maxi=max(maxi,sum);
+        }
+        return maxi;
+    }
+};
+
+
+
+
+// 1572. Matrix Diagonal Sum
+class Solution {
+public:
+    int diagonalSum(vector<vector<int>>& mat) {
+        int n=mat.size();
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=mat[i][i];   //primary diagonal
+            sum+=mat[i][n-i-1];  //secondary diagonal
+        }
+        if(n%2==1){
+            sum-=mat[n/2][n/2];
+        }
+        return sum;
+    }
+};
