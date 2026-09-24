@@ -554,3 +554,95 @@ public:
         return spiral;
     }
 };
+
+
+
+
+// 941. Valid Mountain Array
+class Solution {
+public:
+    bool validMountainArray(vector<int>& arr) {
+        int n=arr.size();
+        int left=0,right=n-1;
+        if(n<3){
+            return false;
+        }
+        while(left+1<n && arr[left]<arr[left+1]){
+            left++;
+        }
+        while(right>0 && arr[right-1]>arr[right]){
+            right--;
+        }
+        return left==right && left!=0 && left!=n-1;
+    }
+};
+
+
+
+
+//742. Find pivot index
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        for(int i=0;i<nums.size();i++){
+            int low=0,high=0;
+            for(int j=i-1;j>=0;j--){
+                low+=nums[j];
+            }
+            for(int k=i+1;k<nums.size();k++){
+                high+=nums[k];
+            }
+            if(low==high){
+                return i;
+            }
+        }
+        return -1;
+    }
+};
+
+
+
+// 1299. Replace Elements with Greatest Element on Right Side
+class Solution {
+public:
+    vector<int> replaceElements(vector<int>& arr) {
+        vector<int>res;
+        for(int i=0;i<arr.size()-1;i++){
+            int maxi=0;
+            for(int j=i+1;j<arr.size();j++){
+                maxi=max(maxi,arr[j]);
+            }
+            res.push_back(maxi);
+        }
+        res.push_back(-1);
+        return res;
+    }
+};
+
+
+
+
+//566. Reshape the Matrix
+class Solution {
+public:
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
+        int m=mat.size();
+        int n=mat[0].size();
+        if(m*n!=r*c){
+            return mat;
+        }
+        int row=0,col=0;
+        vector<vector<int>>ans(r,vector<int>(c));
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                ans[row][col]=mat[i][j];
+                col++;
+                if(col==c){
+                    col=0;
+                    row++;
+                }
+            }
+        }
+        return ans;
+    }
+};
