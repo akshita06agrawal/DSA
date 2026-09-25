@@ -580,6 +580,7 @@ public:
 
 
 
+
 //742. Find pivot index
 class Solution {
 public:
@@ -644,5 +645,39 @@ public:
             }
         }
         return ans;
+    }
+};
+
+
+
+
+
+// 844. Backspace String Compare
+class Solution {
+public:
+    bool backspaceCompare(string s, string t) {
+        stack<char> st1, st2;
+
+        // Process s
+        for(char c : s) {
+            if(c != '#') {
+                st1.push(c);
+            }
+            else if(!st1.empty()) {
+                st1.pop();
+            }
+        }
+
+        // Process t
+        for(char c : t) {
+            if(c != '#') {
+                st2.push(c);
+            }
+            else if(!st2.empty()) {
+                st2.pop();
+            }
+        }
+
+        return st1 == st2;
     }
 };
