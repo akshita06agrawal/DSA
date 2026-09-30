@@ -1,0 +1,72 @@
+OOPs definition: Object-oriented programming (OOP) is a programming paradigm that uses objects and classes to structure code. It focuses on encapsulating data and behavior into reusable components, promoting modularity, and enabling the creation of complex systems through inheritance, polymorphism, and abstraction.
+
+Paradigm definition: A programming paradigm is a fundamental style or approach to programming that defines how developers structure and organize code. It encompasses concepts, principles, and techniques that guide the design and implementation of software, influencing how problems are solved and how programs are constructed.
+
+
+Class definition:A class is a user defined Datatype and A class is a blueprint or template in object-oriented programming that defines the structure and behavior of objects. It encapsulates data (attributes) and functions (methods) that operate on that data, allowing for the creation of multiple instances (objects) with shared characteristics and behaviors.
+
+Object definition: An object is an instance of a class in object-oriented programming. It represents a specific entity that encapsulates data (attributes) and behavior (methods) defined by its class. Objects can interact with one another, maintain their own state, and perform actions based on the methods provided by their class, enabling the creation of complex systems through the use of multiple interacting objects.
+
+Data member definition: A data member is a variable that is defined within a class in object-oriented programming. It represents the attributes or properties of an object and holds the state of that object. Data members can have different access specifiers (public, private, protected) that determine their visibility and accessibility from outside the class.
+
+Method definition: A method is a function that is defined within a class in object-oriented programming. It represents the behavior or actions that an object of the class can perform. Methods can have different access specifiers (public, private, protected) that determine their visibility and accessibility from outside the class.
+
+
+
+Access specifier definition: An access specifier is a keyword in object-oriented programming that defines the visibility and accessibility of class members (data members and methods) from outside the class. Common access specifiers include public, private, and protected, which determine whether class members can be accessed by other classes or objects.
+
+Private access specifier definition: The private access specifier is a keyword in object-oriented programming that restricts the visibility and accessibility of class members (data members and methods) to within the class itself. Members declared as private cannot be accessed directly from outside the class, promoting encapsulation and data hiding.
+
+
+Public access specifier definition: The public access specifier is a keyword in object-oriented programming that allows class members (data members and methods) to be accessed from outside the class. Members declared as public can be accessed by other classes, objects, or functions, enabling interaction and communication between different parts of a program.
+
+
+Protected access specifier definition: The protected access specifier is a keyword in object-oriented programming that allows class members (data members and methods) to be accessed within the class itself and by derived classes (subclasses). Members declared as protected cannot be accessed directly from outside the class, but they can be inherited and used by subclasses, promoting encapsulation while allowing controlled access to derived classes.
+
+Example of access specifiers in C++:
+```cpp
+#include <iostream>
+using namespace std;
+
+class Base {
+private:
+    int privateVar; // Private member, accessible only within the class
+protected:
+    int protectedVar; // Protected member, accessible within the class and derived classes
+public:
+    int publicVar; // Public member, accessible from anywhere
+
+    Base() : privateVar(1), protectedVar(2), publicVar(3) {}
+    void display() {
+        cout << "Private: " << privateVar << ", Protected: " << protectedVar << ", Public: " << publicVar << endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void show() {
+        // cout << "Private: " << privateVar << endl; // Error: privateVar  is not accessible
+        cout << "Protected: " << protectedVar << endl; // Accessible
+        cout << "Public: " << publicVar << endl; // Accessible
+    }
+};
+
+int main() {
+    Base baseObj;
+    baseObj.display(); // Accessing public method
+
+    Derived derivedObj;
+    derivedObj.show(); // Accessing protected and public members
+
+    return 0;
+}
+
+
+4 pillars of OOPs:
+1. Encapsulation: Encapsulation is the process of bundling data and methods that operate on that data within a single unit, typically a class. It restricts direct access to some of the object's components, which can prevent the accidental modification of data. Encapsulation is achieved through access specifiers (public, private, protected) that control the visibility of class members. By providing public methods to access and modify private data, encapsulation ensures that the internal representation of an object is hidden from the outside, promoting data integrity and security.
+
+2. Inheritance: Inheritance is a mechanism in object-oriented programming that allows a new class (derived class) to inherit properties and behaviors (methods) from an existing class (base class). This promotes code reusability and establishes a hierarchical relationship between classes. The derived class can extend or override the functionality of the base class, enabling polymorphism. Inheritance can be single, multiple,  multilevel, hierarchical, or hybrid, depending on how classes are related to each other.
+
+3. Polymorphism: Polymorphism is the ability of a single function, method, or operator to operate in different ways based on the context. In object-oriented programming, polymorphism allows objects of different classes to be treated as objects of a common base class. There are two main types of polymorphism: compile-time (or static) polymorphism, achieved through function overloading and operator overloading, and runtime (or dynamic) polymorphism, achieved through method overriding and the use of virtual functions. Polymorphism enhances flexibility and maintainability in code by allowing the same interface to be used for different underlying forms (data types).
+
+4. Abstraction: Abstraction is the process of hiding the complex implementation details of a system and exposing only the essential features to the user. In object-oriented programming, abstraction is achieved through abstract classes and interfaces, which define a set of methods that must be implemented by derived classes. This allows developers to focus on what an object does rather than how it does it, promoting a clear separation between the interface and implementation. Abstraction simplifies code management, enhances modularity, and allows for easier maintenance and scalability of software systems.
