@@ -866,3 +866,25 @@ public:
         return false;
     }
 };
+
+
+
+
+
+
+// 1047. Remove All Adjacent Duplicates In String
+class Solution {
+public:
+    string removeDuplicates(string s) {
+        string st="";
+        for(char ch:s){
+            if(st.empty() || st.back()!=ch){
+                st.push_back(ch);
+            }
+            else{
+                st.pop_back();
+            }
+        }
+        return st;
+    }
+};
