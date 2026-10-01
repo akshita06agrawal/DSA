@@ -36,3 +36,46 @@ class C: public B{
  
     return 0;
 }
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+class BankAccount{
+    private:
+        string accountHolder;
+        double balance;
+    public:
+        // Constructor
+        BankAccount(string name, double initialBalance) {
+            accountHolder = name;
+            balance = initialBalance;
+        }
+        //public method to deposit money into the account
+        void deposit(double amount){
+            if(amount  > 0){
+                balance += amount;
+            }
+        }
+
+        //public method to withdraw money from the account
+        void withdraw(double amount){
+            if(amount > 0 && amount <= balance){
+                balance -= amount;
+            }
+        }
+
+        //public method to get the current balance of the account
+        double getBalance(){
+            return balance;
+        }
+};  
+
+int main(){
+    BankAccount account("John Doe", 1000.0);
+    account.deposit(500);
+    account.withdraw(200);
+    cout<<"Current balance: "<<account.getBalance()<<endl;
+    return 0;
+}
