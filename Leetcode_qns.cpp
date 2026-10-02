@@ -964,3 +964,24 @@ public:
         return ans;
     }
 };
+
+
+
+
+// 118. Pascal's triangle
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>>ans;
+        for(int i=0;i<numRows;i++){
+            int val=1;
+            vector<int>row;
+            for(int k=0;k<=i;k++){
+                row.push_back(val);
+                val=val*(i-k)/(k+1);
+            }
+            ans.push_back(row);
+        }
+        return ans;
+    }
+};
