@@ -985,3 +985,27 @@ public:
         return ans;
     }
 };
+
+
+
+
+// 1431. Kids With the Greatest Number of Candies
+class Solution {
+public:
+    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
+        int maxi=0;
+        vector<bool>res;
+        for(int i:candies){
+            maxi=max(maxi,i);
+        }
+        for(int i:candies){
+            if(i+extraCandies>=maxi){
+                res.push_back(true);
+            }
+            else{
+                res.push_back(false);
+            }
+        }
+        return res;
+    }
+};
