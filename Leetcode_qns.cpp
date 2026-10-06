@@ -1062,3 +1062,73 @@ public:
         return ans;
     }
 };
+
+
+
+
+// 75. Sort Colors
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int low=0;
+        int mid=0;
+        int high=nums.size()-1;
+        while(mid<=high){
+            if(nums[mid]==0){
+                swap(nums[mid],nums[low]);
+                low++;
+                mid++;
+            }
+            else if(nums[mid]==1){
+                mid++;
+            }
+            else{
+                swap(nums[mid],nums[high]);
+                high--;
+            }
+        }
+    }
+};
+
+
+
+
+// 75. Sort Colors
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int low=0;
+        int mid=0;
+        int high=nums.size()-1;
+        while(mid<=high){
+            if(nums[mid]==0){
+                swap(nums[mid],nums[low]);
+                low++;
+                mid++;
+            }
+            else if(nums[mid]==1){
+                mid++;
+            }
+            else{
+                swap(nums[mid],nums[high]);
+                high--;
+            }
+        }
+    }
+};
+
+
+
+
+// 977. Squares of a Sorted Array
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        vector<int>result;
+        for(int x:nums){
+            result.push_back(x*x);
+        }
+        sort(result.begin(),result.end());
+        return result;
+    }
+};
