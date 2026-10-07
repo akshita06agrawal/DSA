@@ -1153,3 +1153,28 @@ public:
         return result;
     }
 };
+
+
+
+
+
+// 448. Find All Numbers Disappeared in an Array
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        vector<bool> found(nums.size() + 1, false);
+        vector<int> res;
+
+        for(int num : nums) {
+            found[num] = true;
+        }
+
+        for(int i = 1; i <= nums.size(); i++) {
+            if(!found[i]) {
+                res.push_back(i);
+            }
+        }
+
+        return res;
+    }
+};
