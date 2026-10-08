@@ -50,3 +50,22 @@ int main() {
 
     return 0;
 }
+
+
+
+// Calculate average of the array
+template<typename T>
+T calculateAverage(T arr[], int size) {
+    T sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    return sum / size;
+}
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << "Average of the array: " << calculateAverage(arr, n) << endl;
+
+    return 0;
+}
