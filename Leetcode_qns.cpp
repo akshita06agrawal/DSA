@@ -1242,3 +1242,42 @@ public:
         return index;
     }
 };
+
+
+
+
+// 929. Unique Email Addresses
+class Solution {
+public:
+    int numUniqueEmails(vector<string>& emails) {
+        int n = emails.size();
+        unordered_set<string> st;
+        int i = 0, j = 0;
+
+        while (i < n) {
+            string temp = "";
+            j = 0;
+
+            while (j < emails[i].size()) {
+                if (emails[i][j] >= 'a' && emails[i][j] <= 'z') {
+                    temp.push_back(emails[i][j]);
+                    j++;
+                } else if (emails[i][j] == '.') {
+                    j++;
+                } else if (emails[i][j] == '+') {
+                    while (emails[i][j] != '@') j++;
+                } else if (emails[i][j] == '@') {
+                    while (j < emails[i].size()) {
+                        temp.push_back(emails[i][j]);
+                        j++;
+                    }
+                }
+            }
+
+            st.insert(temp);
+            i++;
+        }
+
+        return st.size();
+    }
+};
