@@ -1299,3 +1299,43 @@ public:
         return res;        
     }
 };
+
+
+
+
+
+
+// 500. Keyboard Row
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        string row1 = "qwertyuiop";
+        string row2 = "asdfghjkl";
+        string row3 = "zxcvbnm";
+
+        vector<string> ans;
+
+        for (string word : words) {
+            int count1 = 0, count2 = 0, count3 = 0;
+
+            for (char ch : word) {
+                ch = tolower(ch);
+
+                if (row1.find(ch) != string::npos)
+                    count1++;
+                else if (row2.find(ch) != string::npos)
+                    count2++;
+                else if (row3.find(ch) != string::npos)
+                    count3++;
+            }
+
+            if (count1 == word.length() ||
+                count2 == word.length() ||
+                count3 == word.length()) {
+                ans.push_back(word);
+            }
+        }
+
+        return ans;
+    }
+};
