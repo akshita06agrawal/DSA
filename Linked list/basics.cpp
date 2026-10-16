@@ -33,7 +33,10 @@ int main(){
  
     return 0;
 }
- 
+
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
  
@@ -80,7 +83,9 @@ Node n1 = 5;
     Node n2(6);
     // int a = 5;
     // int d(5);
- 
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
  
@@ -121,6 +126,9 @@ int main(){
  
     return 0;
 }
+
+
+
  
 #include<bits/stdc++.h>
 using namespace std;
