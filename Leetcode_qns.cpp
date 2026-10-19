@@ -1407,3 +1407,74 @@ public:
         return nums;
     }
 };
+
+
+
+
+//19. Remove Nth Node from End of list
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        int cnt=0;
+        ListNode* temp=head;
+        while(temp!=nullptr){
+            cnt++;
+            temp=temp->next;
+        }
+        if (cnt == n) {
+            ListNode* next = head->next;
+            delete head;
+            return next;
+        }
+        temp=head;
+        for(int i=0;i<cnt-n-1;i++){
+            temp=temp->next;
+        }
+        ListNode* removed=temp->next;
+        temp->next = temp->next->next;
+        delete removed;
+       
+        return head;
+    }
+};
+
+
+
+
+//141. Linked List Cycle 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while(fast!=NULL && fast->next!=NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if(fast==slow){
+                return true;
+            }
+        }
+        return false;
+    
+    }
+};
