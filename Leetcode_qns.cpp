@@ -1478,3 +1478,131 @@ public:
     
     }
 };
+
+
+
+
+
+
+
+
+//1472. Design Browser History
+class BrowserHistory {
+public:
+    stack<string> history;
+    stack<string> future;
+	
+    BrowserHistory(string homepage) {
+        history.push(homepage);
+        future = stack<string>();           // Reset the forward stack.
+    }
+    
+    void visit(string url) {
+        history.push(url);
+        future = stack<string>();           // Reset the forward stack.
+    }
+    
+    string back(int steps) {
+        while(steps > 0 && history.size() > 1) { // Always keep at least one element in the stack. 
+            future.push(history.top());
+            history.pop();
+            steps--;
+        }
+        return history.top();
+    }
+    
+    string forward(int steps) {
+        while(steps > 0 && future.size() > 0) {
+            history.push(future.top());
+            future.pop();
+            steps--;
+        }
+        return history.top();
+    }
+};
+
+/**
+ * Your BrowserHistory object will be instantiated and called as such:
+ * BrowserHistory* obj = new BrowserHistory(homepage);
+ * obj->visit(url);
+ * string param_2 = obj->back(steps);
+ * string param_3 = obj->forward(steps);
+ */
+
+
+
+
+
+//146. LRU Cache
+class LRUCache {
+public:
+    class Node{
+        public:
+         int key,value;
+         Node* next;
+         Node* prev;
+         Node(int k,int v){
+            key=k;
+            value=v;
+            prev=NULL;
+            next=NULL;
+         }
+    };
+    unordered_map<int,Node*>mp;
+    Node* head;
+    Node* tail;
+    int capacity;
+    LRUCache(int cap) {
+        capacity=cap;
+        head=new Node(-1,-1);
+        tail=new Node(-1,-1);
+        head->next=tail;
+        tail->prev=head;
+    }
+    void removeNode(Node* node){
+        Node* prevNode=node->prev;
+        Node* nextNode=node->next;
+        prevNode->next=nextNode;
+        nextNode->prev=prevNode;
+    }
+    void insertFront(Node* node){
+        node->next=head->next;
+        node->prev=head;
+        head->next->prev=node;
+        head->next=node;
+    }
+    int get(int key) {
+        if(mp.find(key)==mp.end()){
+            return -1;
+        }
+        Node* node=mp[key];
+        removeNode(node);
+        insertFront(node);
+        return node->value;
+    }
+    
+    void put(int key, int value) {
+        if(mp.find(key)!=mp.end()){
+            Node* node=mp[key];
+            node->value=value;
+            removeNode(node);
+            insertFront(node);
+            return;
+        }
+        if(mp.size()==capacity){
+            Node* lru=tail->prev;
+            removeNode(lru);
+            mp.erase(lru->key);
+        }
+        Node* newNode=new Node(key,value);
+        insertFront(newNode);
+        mp[key]=newNode;
+    }
+};
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
