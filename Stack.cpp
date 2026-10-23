@@ -137,3 +137,194 @@ int main(){
 }
 
 
+
+
+
+
+
+
+//Stack using Linked List 
+// #include<iostream>
+// #include<vector>
+// #include<stack>
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node{
+ public:
+ int data;
+Node* next;
+ Node(int val){
+ data = val;
+ next = nullptr;
+ }
+};
+
+class Stack{
+Node* top;
+ public:
+ Stack(){
+ top = nullptr;
+ }
+ void push(int x){
+Node* newNode = new Node(x);
+ newNode->next = top;
+ top = newNode;
+ }
+
+ void pop(){
+ if(top == nullptr){
+ cout<<"Stack underflow \n";
+ }
+Node* temp = top;
+ top = top->next;
+ delete temp;
+ }
+ int peek(){
+ if(top == nullptr){
+ return -1;
+ }
+ return top->data;
+ }
+ bool isEmpty(){
+ return top == nullptr;
+ }
+};
+
+int main(){
+
+Stack st;
+
+ st.push(10);
+ st.push(20);
+ st.push(30);
+
+ cout<<st.peek()<<endl;
+ st.pop();
+ cout<<st.peek()<<endl;
+
+ if(st.isEmpty()){
+ cout<<"Stack is Empty";
+ }else{
+ cout<<"Stack is not Empty";
+ }
+
+ return 0;
+}
+
+
+
+
+
+
+
+
+//Stack using vector 
+// #include<iostream>
+// #include<vector>
+// #include<stack>
+#include <bits/stdc++.h>
+using namespace std;
+
+class Stack
+{
+vector<int> v;
+
+public:
+ void push(int value)
+ {
+ v.push_back(value);
+ }
+
+ void pop()
+ {
+ if (v.empty())
+ {
+ cout << "Stack underflow \n";
+ return;
+ }
+ v.pop_back();
+ }
+
+ int top()
+ {
+ if (v.empty())
+ {
+ return -1;
+ }
+ return v.back();
+ }
+ bool isEmpty()
+ {
+ return v.empty();
+ }
+ int size()
+ {
+ return v.size();
+ }
+
+ void display()
+ {
+ for (int i = v.size()-1; i >= 0; i--)
+ {
+ cout << v[i] << " ";
+ }
+ }
+};
+
+int main()
+{
+
+Stack st;
+ st.push(10);
+ st.push(20);
+ st.push(30);
+
+ st.display();
+ cout << endl;
+ cout << "Top Element: " << st.top() << endl;
+ cout << endl;
+ return 0;
+}
+
+
+
+
+
+
+//swapping of two stacks
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+
+stack<int> st;
+stack<int> st2;
+
+ st2.push(12);
+ st2.push(13);
+ st2.push(14);
+ st2.push(15);
+
+ st.push(10);
+ st.push(20);
+ st.push(30);
+ st.push(40);
+ st.push(50);
+ cout<<st.size()<<endl; //5
+ cout<<st.top()<<endl; //50
+ st.pop(); //remove top element 50
+ cout<<st.top()<<endl; //40
+
+ cout<<st.empty()<<endl; //0
+ cout<<st.size()<<endl; //4
+
+ cout<<"After swaping st with st2 \n";
+ st.swap(st2);
+ cout<<st.top()<<endl;
+
+ st.emplace(45);
+ cout<<st.top();
+
+ return 0;
+}
