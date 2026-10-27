@@ -369,3 +369,235 @@ int main(){
  
     return 0;
 }
+
+
+
+
+
+// this method uses monotonic stack where iteration starts from 0
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+
+    vector<int> arr = {1, 0, 5, 2, 7};
+
+    int n = arr.size();
+
+    stack<int> st;
+
+    vector<int> ans(n, -1);
+
+    for (int i = 0; i < n; i++)
+    {
+        while (!st.empty() && st.top() < arr[i])
+        {
+            int element = st.top();
+            st.pop();
+            for (int j = i - 1; j >= 0; j--)
+            {
+                if (arr[j] == element && ans[j] == -1)
+                {
+                    ans[j] = arr[i];
+                    break;
+                }
+            }
+        }
+        st.push(arr[i]);
+    }
+
+    for (int x : ans)
+    {
+        cout << x << " ";
+    }
+
+    return 0;
+}
+
+// bruteforce approach for finding next greater element without monotonic stack.
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+
+    vector<int> arr = {1, 0, 5, 2, 7};
+
+    int n = arr.size();
+
+    vector<int> ans(n, -1);
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[j] > arr[i])
+            {
+                ans[i] = arr[j];
+                break;
+            }
+        }
+    }
+
+    for (int x : ans)
+    {
+        cout << x << " ";
+    }
+
+    return 0;
+}
+
+// actual implementation of monotonic stack where iteration starts from end and this is optimal approach which takes less time as compare to the method where iteration starts from beginning.
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+
+    vector<int> arr = {1, 0, 5, 2, 7};
+
+    int n = arr.size();
+
+    stack<int> st;
+
+    vector<int> ans(n, -1);
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        while (!st.empty() && st.top() <= arr[i])
+        {
+            st.pop();
+        }
+        if (!st.empty())
+        {
+            ans[i] = st.top();
+        }
+        st.push(arr[i]);
+    }
+
+    for (int x : ans)
+    {
+        cout << x << " ";
+    }
+
+    return 0;
+}
+
+
+
+
+// next smaller element
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+ 
+    vector<int> arr = {1, 0, 5, 2, 7};
+ 
+    int n = arr.size();
+ 
+    stack<int> st;
+ 
+    vector<int> ans(n, -1);
+ 
+    for(int i = n-1; i>=0; i--){
+        while(!st.empty() && st.top() >= arr[i]){
+            st.pop();
+        }
+        if(!st.empty()){
+            ans[i] = st.top();
+        }
+        st.push(arr[i]);
+    }
+ 
+    for(int x: ans){
+        cout<<x<<" ";
+    }
+ 
+    return 0;
+}
+
+
+
+
+
+// previous smaller element
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+ 
+    vector<int> arr = {1, 0, 5, 2, 7};
+ 
+    int n = arr.size();
+ 
+    stack<int> st;
+ 
+    vector<int> ans(n, -1);
+ 
+    for(int i = 0; i<n; i++){
+        while(!st.empty() && st.top() >= arr[i]){
+            st.pop();
+        }
+        if(!st.empty()){
+            ans[i] = st.top();
+        }
+        st.push(arr[i]);
+    }
+ 
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+ 
+    cout<<endl;
+ 
+    for(int x: ans){
+        cout<<x<<" ";
+    }
+ 
+    return 0;
+}
+ 
+
+
+
+
+//previous greater element
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+ 
+    vector<int> arr = {1, 0, 5, 2, 7};
+ 
+    int n = arr.size();
+ 
+    stack<int> st;
+ 
+    vector<int> ans(n, -1);
+ 
+    for(int i = 0; i<n; i++){
+        while(!st.empty() && st.top() <= arr[i]){
+            st.pop();
+        }
+        if(!st.empty()){
+            ans[i] = st.top();
+        }
+        st.push(arr[i]);
+    }
+ 
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+ 
+    cout<<endl;
+ 
+    for(int x: ans){
+        cout<<x<<" ";
+    }
+ 
+    return 0;
+}
