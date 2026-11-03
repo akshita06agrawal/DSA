@@ -1908,3 +1908,117 @@ private:
  * NumArray* obj = new NumArray(nums);
  * int param_1 = obj->sumRange(left,right);
  */
+
+
+
+
+
+
+// 641. Design Circular Deque
+class MyCircularDeque {
+public:
+    vector<int>v;
+    int capacity,front,rear,size;
+    MyCircularDeque(int k) {
+       v=vector<int>(k,-1);
+       capacity=k; 
+       front=0;
+       rear=0;
+       size=0;
+    }
+    
+    bool insertFront(int value) {
+        if(isFull()){
+            return false;
+        }
+        if(front==0){
+            front=capacity-1;
+        }
+        else{
+            front--;
+        }
+        v[front]=value;
+        size++;
+        return true;
+    }
+    
+    bool insertLast(int value) {
+        if(isFull()){
+            return false;
+        }
+        v[rear]=value;
+        if(rear==capacity-1){
+            rear=0;
+        }
+        else{
+            rear++;
+        }
+        size++;
+        return true;
+    }
+    
+    bool deleteFront() {
+        if(isEmpty()){
+            return false;
+        }
+        v[front]=-1;
+        if (front == capacity - 1) {
+            front = 0; 
+        } 
+        else {
+            front++; 
+        }
+        size--;
+        return true;
+
+    }
+    
+    bool deleteLast() {
+        if (isEmpty()) {
+            return false;
+        }
+
+        if (rear == 0) {
+            rear = capacity - 1; 
+        } 
+        else 
+        {
+            rear--; 
+        }
+        v[rear] = -1;
+        
+        size--;
+        return true;
+    }
+
+    int getFront() {
+        if (isEmpty()){return -1;}
+        return v[front];
+    }
+
+    int getRear() {
+        if (isEmpty()){return -1;} 
+        if (rear == 0) {
+            return v[capacity - 1]; // Wrap around to the last valid element
+        } 
+        else {
+            return v[rear - 1]; // Get the last element
+        }
+    }
+
+    bool isEmpty() { return (size == 0); }
+
+    bool isFull() { return (size == capacity); }
+};
+/**
+ * Your MyCircularDeque object will be instantiated and called as such:
+ * MyCircularDeque* obj = new MyCircularDeque(k);
+ * bool param_1 = obj->insertFront(value);
+ * bool param_2 = obj->insertLast(value);
+ * bool param_3 = obj->deleteFront();
+ * bool param_4 = obj->deleteLast();
+ * int param_5 = obj->getFront();
+ * int param_6 = obj->getRear();
+ * bool param_7 = obj->isEmpty();
+ * bool param_8 = obj->isFull();
+ */
