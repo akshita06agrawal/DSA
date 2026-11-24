@@ -2589,3 +2589,66 @@ public:
         return a.length();
     }
 };
+
+
+
+
+
+// 541. Reverse String II
+class Solution {
+public:
+    string reverseStr(string s, int k) {
+
+        int step = 2 * k;
+
+        for(int i = 0; i < s.length(); i += step){
+
+            int start = i;
+            int end = min(i + k - 1, (int)s.length() - 1);
+
+            while(start < end){
+                swap(s[start], s[end]);
+                start++;
+                end--;
+            }
+        }
+
+        return s;
+    }
+};
+
+
+
+
+
+
+//110. Balanced Binary Tree
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        return dfs(root).first;        
+    }
+
+private:
+    pair<bool, int> dfs(TreeNode* node) {
+        if (!node) return {true, 0};
+        
+        auto [leftBalanced, leftHeight] = dfs(node->left);
+        auto [rightBalanced, rightHeight] = dfs(node->right);
+        
+        bool isBalanced = leftBalanced && rightBalanced && abs(leftHeight - rightHeight) <= 1;
+        
+        return {isBalanced, 1 + max(leftHeight, rightHeight)};
+    }    
+};
